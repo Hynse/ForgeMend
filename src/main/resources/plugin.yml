@@ -1,0 +1,4 @@
+name: ForgeMend
+version: '${version}'
+main: xyz.hynse.forgemend.ForgeMend
+api-version: 1.19
