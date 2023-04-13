@@ -2,7 +2,7 @@ package xyz.hynse.forgemend;
 
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import xyz.hynse.forgemend.Util.Experience;
+import xyz.hynse.forgemend.Util.ExperienceUtil;
 
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
@@ -49,7 +49,7 @@ public class ForgeMend extends JavaPlugin implements Listener {
             return;
         }
 
-        if (Experience.getPlayerExp(player) >= 1) {
+        if (ExperienceUtil.getPlayerExp(player) >= 1) {
             player.giveExp(-1);
             item.setDurability((short) Math.max(item.getDurability() - 2, 0));
             player.updateInventory();
