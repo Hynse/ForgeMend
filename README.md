@@ -13,7 +13,7 @@ To install ForgeMend, follow these steps:
 
 ## Contributing
 
-If you would like to contribute to FoliaFlow, feel free to submit a pull request with your changes. All contributions are welcome and appreciated.
+If you would like to contribute to ForgeMend, feel free to submit a pull request with your changes. All contributions are welcome and appreciated.
 
 ## License
 
