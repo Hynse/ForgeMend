@@ -61,9 +61,9 @@ public class ForgeMend extends JavaPlugin implements Listener {
             return;
         }
 
-        if (playerExperience >= 1) {
-            player.giveExp(-1);
-            item.setDurability((short) Math.max(item.getDurability() - 2, 0));
+        if (playerExperience >= 2) {
+            player.giveExp(-2);
+            item.setDurability((short) Math.max(item.getDurability() - 1, 0));
             player.updateInventory();
         }
     }
