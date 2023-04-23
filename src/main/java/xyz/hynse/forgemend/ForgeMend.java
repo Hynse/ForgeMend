@@ -1,10 +1,10 @@
 package xyz.hynse.forgemend;
 
 import org.bukkit.ChatColor;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.hynse.forgemend.Util.ExperienceUtil;
 
-import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +17,6 @@ public class ForgeMend extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getConsoleSender().sendMessage("");
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + " _____ _____                               ");
@@ -29,22 +28,40 @@ public class ForgeMend extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
+        getServer().getConsoleSender().sendMessage(ChatColor.RED + "[ForgeMend] " + "Plugin stopped successfully!");
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
-        ItemStack item = player.getInventory().getItemInMainHand();
 
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) {
-            if (item.getEnchantmentLevel(Enchantment.MENDING) == 0) {
-                if (item.getDurability() == 0) {
-                }
-            }
+        Player player = event.getPlayer();
+
+        if (!(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) || !player.isSneaking()) {
             return;
         }
 
-        if (ExperienceUtil.getPlayerExp(player) >= 1) {
+        ItemStack item = player.getInventory().getItemInMainHand();
+        ItemMeta meta = item.getItemMeta();
+
+        if (!meta.hasEnchant(Enchantment.MENDING)) {
+            return;
+        }
+
+        int playerExperience = ExperienceUtil.getPlayerExp(player); // pass player object as argument
+
+
+        if (item.getDurability() == 0) {
+            // Item is already fully repaired, do nothing
+            return;
+        }
+
+        // Check whether player has bettermending.use permission
+        if (!player.hasPermission("bettermending.use")) {
+            player.sendMessage("You do not have permission to use the repair feature!");
+            return;
+        }
+
+        if (playerExperience >= 1) {
             player.giveExp(-1);
             item.setDurability((short) Math.max(item.getDurability() - 2, 0));
             player.updateInventory();
