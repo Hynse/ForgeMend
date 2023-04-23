@@ -38,14 +38,10 @@ public class ForgeMend extends JavaPlugin implements Listener {
         ItemStack item = player.getInventory().getItemInMainHand();
 
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) {
-            return;
-        }
-
-        if (item.getEnchantmentLevel(Enchantment.MENDING) == 0) {
-            return;
-        }
-
-        if (item.getDurability() == 0) {
+            if (item.getEnchantmentLevel(Enchantment.MENDING) == 0) {
+                if (item.getDurability() == 0) {
+                }
+            }
             return;
         }
 
