@@ -55,8 +55,7 @@ public class ForgeMend extends JavaPlugin implements Listener {
             return;
         }
 
-        // Check whether player has bettermending.use permission
-        if (!player.hasPermission("bettermending.use")) {
+        if (!player.hasPermission("forgemend.use")) {
             player.sendMessage("You do not have permission to use the repair feature!");
             return;
         }
