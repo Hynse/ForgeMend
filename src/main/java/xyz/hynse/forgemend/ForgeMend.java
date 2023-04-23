@@ -29,7 +29,6 @@ public class ForgeMend extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        getServer().getConsoleSender().sendMessage(ChatColor.RED + "[ForgeMend] " + "Plugin stopped successfully!");
     }
 
     @EventHandler
