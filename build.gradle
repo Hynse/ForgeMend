@@ -2,10 +2,8 @@ plugins {
     id 'java'
 }
 
-def loader = 'paper'
-def server = '1.19.4'
 group = 'xyz.hynse'
-version = "1.2a-${server}-${loader}"
+version = "1.2"
 
 repositories {
     mavenCentral()
